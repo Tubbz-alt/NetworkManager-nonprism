@@ -1,0 +1,15 @@
+#!/bin/sh
+## Install the conf file to enable MAC address randomisation. Written by MDrights. Referenced to Luke R. <g4jc@openmailbox.org> in Parabola's nonprism repo.
+
+if [ $UID != "0" ];then
+	echo "This script should be run as root. sorry..."
+	exit 1
+fi
+
+if [ -e 30-nonprism.conf -a -d /usr/lib/NetworkManager/conf.d/ ]; then
+    install -Dm644 30-nonprism.conf /usr/lib/NetworkManager/conf.d/30-nonprism.conf
+else
+    echo "Either you are not at the correct directory, nor the NM directory is not correct."
+fi
+
+exit
